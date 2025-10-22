@@ -10,11 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalScoreDisplay = document.getElementById("final-score");
   const message = document.getElementById("message");
   const timeDisplay = document.getElementById("time");
+  const endTitle = document.getElementById("end-title");
+  const endText = document.getElementById("end-text");
 
   let score = 0;
   let time = 30;
   let timer;
   let dropInterval;
+  let streak = 0;
 
   function showScreen(screen) {
     document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
@@ -28,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function startGame() {
     score = 0;
     time = 30;
+    streak = 0;
     scoreDisplay.textContent = score;
     timeDisplay.textContent = time;
     message.textContent = "";
@@ -41,7 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(timer);
     clearInterval(dropInterval);
     finalScoreDisplay.textContent = score;
-    launchConfetti();
+    if (score > 0) {
+      endTitle.textContent = "Quest Complete!";
+      endText.textContent = `You helped bring clean water to ${score / 10} communities!`;
+      launchConfetti();
+    } else {
+      endTitle.textContent = "Keep Trying!";
+      endText.textContent = "No communities reached yet. Try again!";
+    }
     showScreen(endScreen);
   }
 
@@ -65,11 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
       drop.addEventListener("click", () => {
         if (isClean) {
           score += 10;
-          message.textContent = "Nice ripple!";
+          streak++;
+          if (streak >= 3) {
+            score += 20;
+            streak = 0;
+            message.textContent = "💦 Clean Streak! +20 Bonus!";
+          } else {
+            message.textContent = getBoostMessage(score);
+          }
           createRipple(drop);
         } else {
+          streak = 0;
           score -= 5;
-          message.textContent = "Pollution spread!";
+          message.textContent = "⚠️ Polluted drop! -5";
         }
         scoreDisplay.textContent = score;
         drop.remove();
@@ -77,6 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       animateFall(drop);
     }, 900);
+  }
+
+  function getBoostMessage(score) {
+    if (score >= 100) return "🌍 Incredible impact!";
+    if (score >= 70) return "🚰 You're changing lives!";
+    if (score >= 40) return "💧 Keep the flow going!";
+    if (score >= 20) return "✨ Great job!";
+    return "Nice ripple!";
   }
 
   function animateFall(drop) {
