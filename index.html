@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ripple Effect</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Start Screen -->
+  <section id="start-screen" class="screen active">
+    <h1>Ripple Effect</h1>
+    <p>Create ripples of change — one drop at a time.</p>
+    <button id="start-btn">Start Game</button>
+    <button id="about-btn">About</button>
+  </section>
+
+  <!-- Game Screen -->
+  <section id="game-screen" class="screen">
+    <header>
+      <div class="score">Communities Reached: <span id="score">0</span></div>
+      <div class="timer">Time: <span id="time">30</span>s</div>
+    </header>
+    <div id="game-area"></div>
+    <p id="message"></p>
+    <button id="reset-btn">Reset</button>
+  </section>
+
+  <!-- End Screen -->
+  <section id="end-screen" class="screen">
+    <h2>Quest Complete!</h2>
+    <p>You helped bring clean water to <span id="final-score">0</span> communities!</p>
+    <button id="play-again-btn">Play Again</button>
+    <a href="https://www.charitywater.org" target="_blank">Learn More About charity: water</a>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
