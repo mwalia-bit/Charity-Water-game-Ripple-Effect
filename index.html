@@ -4,34 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ripple Effect</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-  <!-- Start Screen -->
+  <!-- START SCREEN -->
   <section id="start-screen" class="screen active">
-    <h1>Ripple Effect</h1>
-    <p>Create ripples of change — one drop at a time.</p>
-    <button id="start-btn">Start Game</button>
-    <button id="about-btn">About</button>
+    <h1 class="title">RIPPLE EFFECT</h1>
+    <p class="tagline">Create ripples of change — one drop at a time.</p>
+    <button id="start-btn" class="btn primary">START GAME</button>
+    <button id="about-btn" class="btn secondary">ABOUT</button>
   </section>
 
-  <!-- Game Screen -->
+  <!-- GAME SCREEN -->
   <section id="game-screen" class="screen">
-    <header>
+    <header class="game-header">
       <div class="score">Communities Reached: <span id="score">0</span></div>
       <div class="timer">Time: <span id="time">30</span>s</div>
     </header>
+
     <div id="game-area"></div>
-    <p id="message"></p>
-    <button id="reset-btn">Reset</button>
+    <p id="message" class="feedback"></p>
+    <button id="reset-btn" class="btn primary">Reset</button>
   </section>
 
-  <!-- End Screen -->
+  <!-- END SCREEN -->
   <section id="end-screen" class="screen">
-    <h2>Quest Complete!</h2>
-    <p>You helped bring clean water to <span id="final-score">0</span> communities!</p>
-    <button id="play-again-btn">Play Again</button>
-    <a href="https://www.charitywater.org" target="_blank">Learn More About charity: water</a>
+    <h2 class="title">QUEST COMPLETE!</h2>
+    <p class="summary">You helped bring clean water to <span id="final-score">0</span> communities!</p>
+    <button id="play-again-btn" class="btn primary">PLAY AGAIN</button>
+    <a href="https://www.charitywater.org" target="_blank" class="learn-link">Learn more about charity: water</a>
   </section>
 
   <script src="script.js"></script>
