@@ -1,10 +1,4 @@
-/* Ripple Effect Game Styling */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -15,7 +9,6 @@ body {
   min-height: 100vh;
 }
 
-/* ===== SCREENS ===== */
 .screen {
   display: none;
   flex-direction: column;
@@ -33,7 +26,9 @@ body {
 }
 .screen.active { display: flex; }
 
-/* ===== TEXT ===== */
+.fade-in { animation: fadeIn 0.8s ease-in; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -42,7 +37,6 @@ body {
 }
 .tagline { color: #e8f8ff; margin-bottom: 1.5rem; }
 
-/* ===== BUTTONS ===== */
 .btn {
   border: none;
   border-radius: 12px;
@@ -62,21 +56,15 @@ body {
   color:#ffd200; font-weight:600; text-decoration:none; margin-top:1rem;
 }
 
-/* ===== GAME SCREEN ===== */
 #game-screen {
   background: linear-gradient(#009de0 40%, #006eb6 100%);
   padding: 1rem;
 }
-
 .game-header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  display:flex; justify-content:space-between; width:100%;
+  font-weight:600; margin-bottom:0.5rem;
 }
 
-/* ===== GAME AREA ===== */
 #game-area {
   position: relative;
   width: 100%;
@@ -88,7 +76,6 @@ body {
   background: radial-gradient(circle at 50% 40%, #3bb8ff 0%, #005b99 100%);
 }
 
-/* ===== WATER DROPLETS ===== */
 .drop {
   position: absolute;
   width: 35px;
@@ -97,10 +84,9 @@ body {
   transform: rotate(180deg);
   animation: fall 3s linear forwards;
 }
-
 .clean {
-  background: radial-gradient(circle at 35% 25%, #b3e5ff 0%, #0091ea 60%, #005b99 100%);
-  box-shadow: 0 0 12px rgba(0, 180, 255, 0.6);
+  background: radial-gradient(circle at 35% 25%, #b3e5ff 5%, #0091ea 50%, #005b99 100%);
+  box-shadow: 0 0 10px rgba(0, 180, 255, 0.5);
 }
 .clean::after {
   content: "";
@@ -109,13 +95,13 @@ body {
   left: 25%;
   width: 30%;
   height: 25%;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
 }
 
 .polluted {
-  background: radial-gradient(circle at 35% 25%, #c2a05f 0%, #5e430c 80%, #3b2b00 100%);
-  box-shadow: 0 0 12px rgba(80, 50, 0, 0.6);
+  background: radial-gradient(circle at 35% 25%, #c2a05f 5%, #5e430c 70%, #3b2b00 100%);
+  box-shadow: 0 0 10px rgba(60, 30, 0, 0.5);
 }
 .polluted::after {
   content: "";
@@ -128,7 +114,6 @@ body {
   border-radius: 50%;
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fall {
   0% { top: -60px; opacity: 0; }
   10% { opacity: 1; }
@@ -140,7 +125,6 @@ body {
   100% { transform: scale(3); opacity: 0; }
 }
 
-/* ===== FEEDBACK ===== */
 .feedback {
   color: #002e4d;
   font-weight: 600;
