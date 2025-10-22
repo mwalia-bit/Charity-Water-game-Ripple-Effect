@@ -1,3 +1,5 @@
+// Ripple Effect Game Logic
+
 const startBtn = document.getElementById("start-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 const resetBtn = document.getElementById("reset-btn");
@@ -15,7 +17,7 @@ let time = 30;
 let timer;
 let dropInterval;
 
-// switch screens
+// Switch screens
 function showScreen(screen) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   screen.classList.add("active");
@@ -30,6 +32,8 @@ function startGame() {
   time = 30;
   scoreDisplay.textContent = score;
   timeDisplay.textContent = time;
+  message.textContent = "";
+  gameArea.innerHTML = "";
   showScreen(gameScreen);
   startTimer();
   spawnDrops();
@@ -39,6 +43,7 @@ function endGame() {
   clearInterval(timer);
   clearInterval(dropInterval);
   finalScoreDisplay.textContent = score;
+  launchConfetti();
   showScreen(endScreen);
 }
 
@@ -84,4 +89,29 @@ function resetGame() {
   time = 30;
   scoreDisplay.textContent = score;
   timeDisplay.textContent = time;
+}
+
+/* ===== Confetti Celebration ===== */
+function launchConfetti() {
+  const duration = 3 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 1000 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+    if (timeLeft <= 0) return clearInterval(interval);
+
+    const particleCount = 50 * (timeLeft / duration);
+    confetti(Object.assign({}, defaults, {
+      particleCount,
+      origin: {
+        x: randomInRange(0.1, 0.9),
+        y: Math.random() - 0.2
+      }
+    }));
+  }, 250);
 }
