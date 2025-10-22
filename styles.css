@@ -1,4 +1,4 @@
-/* Ripple Effect Game – charity: water theme */
+/* Ripple Effect Game Styling */
 
 * {
   box-sizing: border-box;
@@ -8,14 +8,14 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #f8f6f0;
+  background: #f7f5ef;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-/* ===== Screens ===== */
+/* ===== SCREENS ===== */
 .screen {
   display: none;
   flex-direction: column;
@@ -24,169 +24,125 @@ body {
   width: 350px;
   height: 620px;
   border-radius: 25px;
-  background-color: #006eb6;
+  background-color: #007bca;
   color: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   text-align: center;
-  border: 6px solid #003049;
+  border: 6px solid #003366;
+  padding: 1rem;
 }
-
 .screen.active { display: flex; }
 
-/* ===== Header Titles ===== */
+/* ===== TEXT ===== */
 .title {
   font-size: 2.2rem;
   font-weight: 800;
-  letter-spacing: 1px;
   color: #ffd200;
   margin-bottom: 0.5rem;
 }
+.tagline { color: #e8f8ff; margin-bottom: 1.5rem; }
 
-.tagline {
-  font-size: 1rem;
-  color: #e6f7ff;
-  margin-bottom: 2rem;
-}
-
-/* ===== Buttons ===== */
+/* ===== BUTTONS ===== */
 .btn {
   border: none;
   border-radius: 12px;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   font-size: 1.1rem;
   margin: 0.6rem 0;
   cursor: pointer;
   font-weight: 700;
   transition: transform 0.15s ease;
 }
-
-.btn.primary {
-  background-color: #ffd200;
-  color: #003049;
-}
-
-.btn.primary:hover { transform: scale(1.05); }
-
-.btn.secondary {
-  background-color: #004b7a;
-  color: #fff;
-}
-
-.btn.secondary:hover { transform: scale(1.05); }
+.btn.primary { background:#ffd200; color:#003049; }
+.btn.secondary { background:#005a92; color:#fff; }
+.btn.small { padding: 0.7rem 1.6rem; font-size: 1rem; }
+.btn:hover { transform: scale(1.05); }
 
 .learn-link {
-  color: #ffd200;
-  font-weight: 600;
-  text-decoration: none;
-  margin-top: 1rem;
-  display: inline-block;
+  color:#ffd200; font-weight:600; text-decoration:none; margin-top:1rem;
 }
 
-/* ===== Game Screen ===== */
+/* ===== GAME SCREEN ===== */
 #game-screen {
   background: linear-gradient(#009de0 40%, #006eb6 100%);
   padding: 1rem;
 }
 
 .game-header {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
   font-weight: 600;
-  color: #fff;
   margin-bottom: 0.5rem;
 }
 
+/* ===== GAME AREA ===== */
 #game-area {
   position: relative;
   width: 100%;
   height: 320px;
-  background:
-    linear-gradient(90deg, rgba(255,210,0,0.3) 1px, transparent 1px),
-    linear-gradient(rgba(255,210,0,0.3) 1px, transparent 1px),
-    linear-gradient(#00aef0 20%, #007bb9 100%);
-  background-size: 80px 80px, 80px 80px, cover;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.25);
+  margin-bottom: 1rem;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.25);
+  background: radial-gradient(circle at 50% 40%, #3bb8ff 0%, #005b99 100%);
 }
 
+/* ===== WATER DROPLETS ===== */
 .drop {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
+  width: 35px;
+  height: 50px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: rotate(180deg);
+  animation: fall 3s linear forwards;
 }
 
 .clean {
-  background: radial-gradient(circle at 30% 30%, #29b6f6, #0288d1);
-  box-shadow: 0 0 10px rgba(41,182,246,0.7);
+  background: radial-gradient(circle at 35% 25%, #b3e5ff 0%, #0091ea 60%, #005b99 100%);
+  box-shadow: 0 0 12px rgba(0, 180, 255, 0.6);
+}
+.clean::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 30%;
+  height: 25%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
 }
 
 .polluted {
-  background: radial-gradient(circle at 30% 30%, #444, #000);
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background: radial-gradient(circle at 35% 25%, #c2a05f 0%, #5e430c 80%, #3b2b00 100%);
+  box-shadow: 0 0 12px rgba(80, 50, 0, 0.6);
+}
+.polluted::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 30%;
+  height: 25%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
 }
 
+/* ===== ANIMATIONS ===== */
 @keyframes fall {
-  0% { top: -40px; }
-  100% { top: 100%; }
+  0% { top: -60px; opacity: 0; }
+  10% { opacity: 1; }
+  100% { top: 330px; opacity: 0.8; }
 }
 
-/* Feedback bubble */
+@keyframes rippleEffect {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* ===== FEEDBACK ===== */
 .feedback {
-  background: #ffd200;
-  color: #003049;
-  font-weight: 700;
-  border-radius: 10px;
-  padding: 0.4rem 1rem;
-  margin-top: 0.6rem;
-  min-height: 1.6rem;
-}
-
-/* Reset Button */
-#reset-btn {
-  background-color: #ffd200;
-  color: #003049;
-  font-weight: 700;
-  border: none;
-  border-radius: 10px;
-  padding: 0.6rem 1.4rem;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-/* ===== End Screen ===== */
-#end-screen {
-  background: linear-gradient(#007bb9 40%, #00aef0 100%);
-  color: #fff;
-  padding: 2rem 1rem;
-}
-
-#end-screen h2 {
-  color: #ffd200;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-}
-
-.summary {
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-#play-again-btn {
-  background-color: #ffd200;
-  color: #003049;
+  color: #002e4d;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-}
-
-/* Mobile fit */
-@media (max-width: 500px) {
-  .screen { width: 90%; height: 600px; }
-  #game-area { height: 260px; }
 }
