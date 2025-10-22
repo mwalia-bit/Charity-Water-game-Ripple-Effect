@@ -1,44 +1,115 @@
-body {
-  font-family: "Open Sans", sans-serif;
-  text-align: center;
+/* Ripple Effect Game – charity: water theme */
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  background: #f7f5ef;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f8f6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ===== Screens ===== */
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 620px;
+  border-radius: 25px;
+  background-color: #006eb6;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  overflow: hidden;
+  text-align: center;
+  border: 6px solid #003049;
+}
+
+.screen.active { display: flex; }
+
+/* ===== Header Titles ===== */
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffd200;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #e6f7ff;
+  margin-bottom: 2rem;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  margin: 0.6rem 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.btn.primary {
+  background-color: #ffd200;
   color: #003049;
 }
 
-.screen {
-  display: none;
-  height: 100vh;
-  padding: 2rem;
+.btn.primary:hover { transform: scale(1.05); }
+
+.btn.secondary {
+  background-color: #004b7a;
+  color: #fff;
 }
 
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+.btn.secondary:hover { transform: scale(1.05); }
 
-button {
-  background-color: #ffd200;
-  border: none;
-  border-radius: 10px;
-  padding: 1rem 2rem;
+.learn-link {
+  color: #ffd200;
+  font-weight: 600;
+  text-decoration: none;
   margin-top: 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.1s ease;
+  display: inline-block;
 }
 
-button:hover { transform: scale(1.05); }
+/* ===== Game Screen ===== */
+#game-screen {
+  background: linear-gradient(#009de0 40%, #006eb6 100%);
+  padding: 1rem;
+}
+
+.game-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
 
 #game-area {
   position: relative;
-  width: 90%;
-  height: 60vh;
-  background: #00adef20;
+  width: 100%;
+  height: 320px;
+  background:
+    linear-gradient(90deg, rgba(255,210,0,0.3) 1px, transparent 1px),
+    linear-gradient(rgba(255,210,0,0.3) 1px, transparent 1px),
+    linear-gradient(#00aef0 20%, #007bb9 100%);
+  background-size: 80px 80px, 80px 80px, cover;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.25);
 }
 
 .drop {
@@ -49,15 +120,73 @@ button:hover { transform: scale(1.05); }
   cursor: pointer;
 }
 
-.clean { background: #00adef; }
-.polluted { background: #222; }
+.clean {
+  background: radial-gradient(circle at 30% 30%, #29b6f6, #0288d1);
+  box-shadow: 0 0 10px rgba(41,182,246,0.7);
+}
+
+.polluted {
+  background: radial-gradient(circle at 30% 30%, #444, #000);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 
 @keyframes fall {
   0% { top: -40px; }
   100% { top: 100%; }
 }
 
-@media (max-width: 600px) {
-  #game-area { height: 50vh; }
-  button { padding: 0.8rem 1.6rem; }
+/* Feedback bubble */
+.feedback {
+  background: #ffd200;
+  color: #003049;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  margin-top: 0.6rem;
+  min-height: 1.6rem;
+}
+
+/* Reset Button */
+#reset-btn {
+  background-color: #ffd200;
+  color: #003049;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+/* ===== End Screen ===== */
+#end-screen {
+  background: linear-gradient(#007bb9 40%, #00aef0 100%);
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+#end-screen h2 {
+  color: #ffd200;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.summary {
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+#play-again-btn {
+  background-color: #ffd200;
+  color: #003049;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile fit */
+@media (max-width: 500px) {
+  .screen { width: 90%; height: 600px; }
+  #game-area { height: 260px; }
 }
