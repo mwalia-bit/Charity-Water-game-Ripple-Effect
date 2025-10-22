@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ripple Effect</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Confetti Library -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -27,15 +26,15 @@
 
     <div id="game-area"></div>
     <p id="message" class="feedback"></p>
-    <button id="reset-btn" class="btn primary">Reset</button>
+    <button id="reset-btn" class="btn primary small">Reset</button>
   </section>
 
   <!-- END SCREEN -->
   <section id="end-screen" class="screen">
-    <h2 class="title">QUEST COMPLETE!</h2>
-    <p class="summary">You helped bring clean water to <span id="final-score">0</span> communities!</p>
-    <button id="play-again-btn" class="btn primary">PLAY AGAIN</button>
-    <a href="https://www.charitywater.org" target="_blank" class="learn-link">Learn more about charity: water</a>
+    <h2>Quest Complete!</h2>
+    <p>You helped bring clean water to <span id="final-score">0</span> communities!</p>
+    <button id="play-again-btn" class="btn primary">Play Again</button>
+    <a href="https://www.charitywater.org" class="learn-link" target="_blank">Learn More About charity: water</a>
   </section>
 
   <script src="script.js"></script>
